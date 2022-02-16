@@ -41,15 +41,18 @@ const addTodo = (name: string) => {
     name,
     done: false,
   })
-
+}
+// 全选
+const checkAll = (value: boolean) => {
+  list.value.forEach((item) => item.done = value)
 }
 </script>
 
 <template>
   <section class="todoapp">
-    <TodoHeader @addTodo="addTodo"></TodoHeader>
-    <TodoMain :list="list" @changeDone="changeDone" @delTodo="delTodo"></TodoMain>
-    <TodoFooter :list="list"></TodoFooter>
+    <TodoHeader @addTodo="addTodo" ></TodoHeader>
+    <TodoMain :list="list" @checkAll="checkAll" @changeDone="changeDone" @delTodo="delTodo"></TodoMain>
+    <TodoFooter :list="list" ></TodoFooter>
   </section>
 </template>
 
