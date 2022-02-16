@@ -2,30 +2,14 @@
 import TodoHeader from './components/TodoHeader.vue'
 import TodoMain from './components/TodoMain.vue'
 import TodoFooter from './components/TodoFooter.vue'
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 export interface listType {
   id: number,
   name: string,
   done: boolean,
 }
 // 提供数据
-const list = ref<listType[]>([
-  {
-    id: 1,
-    name: '吃饭',
-    done: true,
-  },
-  {
-    id: 2,
-    name: '睡觉',
-    done: false,
-  },
-  {
-    id: 3,
-    name: '打豆豆',
-    done: false,
-  },
-])
+const list = ref<listType[]>(JSON.parse(localStorage.getItem('todos') || '[]'))
 // 子传父，修改单选框
 const changeDone = (id: number) => {
   list.value.forEach(item => { if (item.id === id) { item.done = !item.done } return item })
@@ -46,6 +30,12 @@ const addTodo = (name: string) => {
 const checkAll = (value: boolean) => {
   list.value.forEach((item) => item.done = value)
 }
+// watch 监视存到本地
+watch(list,(value) => {
+  localStorage.setItem('todos',JSON.stringify(value))
+},{
+  deep:true
+})
 </script>
 
 <template>
