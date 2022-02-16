@@ -26,12 +26,16 @@ const list = ref<listType[]>([
     done: false,
   },
 ])
+// 子传父，修改单选框
+const changeDone = (id:number) => { 
+ list.value.forEach(item=>{ if( item.id === id){ item.done = !item.done } return item })
+ }
 </script>
 
 <template>
   <section class="todoapp">
     <TodoHeader></TodoHeader>
-    <TodoMain :list="list"></TodoMain>
+    <TodoMain :list="list" @changeDone="changeDone"></TodoMain>
     <TodoFooter></TodoFooter>
   </section>
 </template>
