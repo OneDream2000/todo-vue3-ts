@@ -13,7 +13,7 @@ const { todos } = useStore()
         <div class="view">
           <input class="toggle" type="checkbox" :checked="item.done" @change="todos.changeDone(item.id)" />
           <label>{{ item.content }}</label>
-          <button class="destroy"></button>
+          <button class="destroy" @click="todos.delTodo(item.id)"></button>
         </div>
         <input class="edit" value="Create a TodoMVC template" />
       </li>

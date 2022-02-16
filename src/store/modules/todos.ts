@@ -21,6 +21,9 @@ const useTodosStore = defineStore('todos',{
       if (todo) {
         todo.done = !todo.done
       }
+    },
+    delTodo(id:number){
+      this.list = this.list.filter(item=>item.id!==id)
     }
   },
 })
