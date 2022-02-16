@@ -14,7 +14,15 @@ const useTodosStore = defineStore('todos',{
   // 计算
   getters: {},
   // 函数
-  actions: {},
+  actions: {
+     // 修改任务状态
+    changeDone(id:number){
+      const todo = this.list.find(item=>item.id === id)
+      if (todo) {
+        todo.done = !todo.done
+      }
+    }
+  },
 })
 
 export default useTodosStore

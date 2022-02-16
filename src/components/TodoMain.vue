@@ -11,7 +11,7 @@ const { todos } = useStore()
     <ul class="todo-list">
       <li :class="{completed:item.done}"    v-for="item in todos.list"  :key="item.id">
         <div class="view">
-          <input class="toggle" type="checkbox" :checked="item.done" />
+          <input class="toggle" type="checkbox" :checked="item.done" @change="todos.changeDone(item.id)" />
           <label>{{ item.content }}</label>
           <button class="destroy"></button>
         </div>
