@@ -15,6 +15,10 @@ const useTodosStore = defineStore('todos', {
   getters: {
     isCheckAll():boolean{
       return this.list.length>0 && this.list.every(item=>item.done)
+    },
+    // 剩余数量
+    surplusCount():number{
+      return this.list.filter(item=>!item.done).length
     }
   },
   // 函数

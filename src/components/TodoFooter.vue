@@ -1,8 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useStore from '../store';
+  const {todos} = useStore()
+</script>
 
 <template>
   <footer class="footer">
-    <span class="todo-count"><strong>0</strong> item left</span>
+    <span class="todo-count"><strong>{{todos.surplusCount}}</strong> item left</span>
     <ul class="filters">
       <li>
         <a class="selected" href="#/">All</a>
