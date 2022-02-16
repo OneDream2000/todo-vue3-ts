@@ -1,4 +1,8 @@
 import { defineStore } from 'pinia';
+type list={
+   id: number, content: string, done: boolean 
+}
+export type TodoState= 'All'| 'Active'| 'Completed'
 
 const useTodosStore = defineStore('todos', {
   // 状态
@@ -9,6 +13,8 @@ const useTodosStore = defineStore('todos', {
         { id: 2, content: '睡觉', done: false },
         { id: 3, content: '打代码', done: false },
       ],
+      filters: ['All', 'Active', 'Completed'],
+      active:'All'
     };
   },
   // 计算
@@ -19,6 +25,15 @@ const useTodosStore = defineStore('todos', {
     // 剩余数量
     surplusCount():number{
       return this.list.filter(item=>!item.done).length
+    },
+    showList():list[]{
+      if(this.active ==='Active'){
+        return  this.list.filter((item) => !item.done)
+      }
+      if(this.active ==='Completed'){
+        return  this.list.filter((item) => item.done)
+      }
+      return this.list
     }
   },
   // 函数
@@ -51,6 +66,9 @@ const useTodosStore = defineStore('todos', {
     // 清空已完成
     clearTodos(){
       this.list = this.list.filter((item) => !item.done)
+    },
+    updateActive(active:TodoState){
+      this.active = active
     }
   },
 });
