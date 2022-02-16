@@ -6,7 +6,7 @@ const { todos } = useStore()
 
 <template>
   <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox" />
+    <input id="toggle-all" class="toggle-all" type="checkbox" :checked="todos.isCheckAll" @change="todos.changeCheckAll(!todos.isCheckAll)" />
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       <li :class="{completed:item.done}"    v-for="item in todos.list"  :key="item.id">

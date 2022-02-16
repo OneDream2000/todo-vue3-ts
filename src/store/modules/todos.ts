@@ -12,7 +12,11 @@ const useTodosStore = defineStore('todos', {
     };
   },
   // 计算
-  getters: {},
+  getters: {
+    isCheckAll():boolean{
+      return this.list.length>0 && this.list.every(item=>item.done)
+    }
+  },
   // 函数
   actions: {
     // 修改任务状态
@@ -34,6 +38,12 @@ const useTodosStore = defineStore('todos', {
         done: false,
       });
     },
+    // 全选
+    changeCheckAll(isCheckAll:boolean){
+      this.list.forEach((item) => {
+        item.done = isCheckAll
+      })
+    }
   },
 });
 
