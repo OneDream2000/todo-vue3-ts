@@ -49,7 +49,7 @@ const addTodo = (name: string) => {
   <section class="todoapp">
     <TodoHeader @addTodo="addTodo"></TodoHeader>
     <TodoMain :list="list" @changeDone="changeDone" @delTodo="delTodo"></TodoMain>
-    <TodoFooter></TodoFooter>
+    <TodoFooter :list="list"></TodoFooter>
   </section>
 </template>
 
