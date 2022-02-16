@@ -30,12 +30,16 @@ const list = ref<listType[]>([
 const changeDone = (id:number) => { 
  list.value.forEach(item=>{ if( item.id === id){ item.done = !item.done } return item })
  }
+//  删除
+const delTodo = (id:number) => { 
+   list.value = list.value.filter((item) => item.id !== id)
+ }
 </script>
 
 <template>
   <section class="todoapp">
     <TodoHeader></TodoHeader>
-    <TodoMain :list="list" @changeDone="changeDone"></TodoMain>
+    <TodoMain :list="list" @changeDone="changeDone" @delTodo="delTodo"></TodoMain>
     <TodoFooter></TodoFooter>
   </section>
 </template>

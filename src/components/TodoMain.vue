@@ -4,7 +4,7 @@ interface Props{
   list:listType[]
 }
 const {list:[]} = defineProps<Props>()
-const emit = defineEmits(['changeDone'])
+const emit = defineEmits(['changeDone','delTodo'])
 const changeFn = (id:number) => { 
   emit('changeDone',id)
  }
@@ -19,9 +19,9 @@ const changeFn = (id:number) => {
         <div class="view">
           <input class="toggle" type="checkbox" :checked="item.done" @change="changeFn(item.id)"/>
           <label>{{item.name}}</label>
-          <button class="destroy"></button>
+          <button class="destroy" @click="emit('delTodo', item.id)"></button>
         </div>
-        <input class="edit" value="Create a TodoMVC template" />
+        <input class="edit" value="Create a TodoMVC template"  />
       </li>
     </ul>
   </section>
