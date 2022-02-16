@@ -47,6 +47,10 @@ const useTodosStore = defineStore('todos', {
       this.list.forEach((item) => {
         item.done = isCheckAll
       })
+    },
+    // 清空已完成
+    clearTodos(){
+      this.list = this.list.filter((item) => !item.done)
     }
   },
 });

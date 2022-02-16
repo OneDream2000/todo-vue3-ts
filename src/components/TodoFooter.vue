@@ -17,7 +17,7 @@ import useStore from '../store';
         <a href="#/completed">Completed</a>
       </li>
     </ul>
-    <button class="clear-completed">Clear completed</button>
+    <button class="clear-completed" @click="todos.clearTodos">Clear completed</button>
   </footer>
 </template>
 
