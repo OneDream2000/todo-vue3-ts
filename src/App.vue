@@ -4,9 +4,9 @@ import TodoMain from './components/TodoMain.vue'
 import TodoFooter from './components/TodoFooter.vue'
 import { ref } from 'vue';
 export interface listType {
-    id: number,
-    name: string,
-    done: boolean,
+  id: number,
+  name: string,
+  done: boolean,
 }
 // 提供数据
 const list = ref<listType[]>([
@@ -27,18 +27,27 @@ const list = ref<listType[]>([
   },
 ])
 // 子传父，修改单选框
-const changeDone = (id:number) => { 
- list.value.forEach(item=>{ if( item.id === id){ item.done = !item.done } return item })
- }
+const changeDone = (id: number) => {
+  list.value.forEach(item => { if (item.id === id) { item.done = !item.done } return item })
+}
 //  删除
-const delTodo = (id:number) => { 
-   list.value = list.value.filter((item) => item.id !== id)
- }
+const delTodo = (id: number) => {
+  list.value = list.value.filter((item) => item.id !== id)
+}
+//  添加
+const addTodo = (name: string) => {
+  list.value.unshift({
+    id: Date.now(),
+    name,
+    done: false,
+  })
+
+}
 </script>
 
 <template>
   <section class="todoapp">
-    <TodoHeader></TodoHeader>
+    <TodoHeader @addTodo="addTodo"></TodoHeader>
     <TodoMain :list="list" @changeDone="changeDone" @delTodo="delTodo"></TodoMain>
     <TodoFooter></TodoFooter>
   </section>
