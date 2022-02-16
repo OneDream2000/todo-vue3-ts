@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import useStore from '../store/index.ts';
 const { todos } = useStore()
+// 监听数据，本地缓存
+todos.$subscribe(() => {
+ localStorage.setItem('todos', JSON.stringify(todos.list))
+})
 </script>
 
 

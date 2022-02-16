@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-type list={
+type List={
    id: number, content: string, done: boolean 
 }
 export type TodoState= 'All'| 'Active'| 'Completed'
@@ -8,11 +8,7 @@ const useTodosStore = defineStore('todos', {
   // 状态
   state() {
     return {
-      list: [
-        { id: 1, content: '吃饭', done: true },
-        { id: 2, content: '睡觉', done: false },
-        { id: 3, content: '打代码', done: false },
-      ],
+      list: JSON.parse(localStorage.getItem('todos') || '[]') as List[],
       filters: ['All', 'Active', 'Completed'],
       active:'All'
     };
@@ -26,7 +22,7 @@ const useTodosStore = defineStore('todos', {
     surplusCount():number{
       return this.list.filter(item=>!item.done).length
     },
-    showList():list[]{
+    showList():List[]{
       if(this.active ==='Active'){
         return  this.list.filter((item) => !item.done)
       }
